@@ -1,15 +1,26 @@
 package com.comment.common.intf;
 
-public enum GenderEnum {
-	MAN(0, "男"),
-	WOMAN(1, "女"),
-	UNKNOW(2, "未知"),;
+/**
+ * 
+ * 简述部分:公司规模
+ *
+ * @author lijiawen
+ * @version 2020年1月18日
+ */
+public enum CompanySizeEnum {
+	ONE(1, "1-50人"),
+	TWO(2, "50-100人"),
+	THREE(3, "100-300人"),
+	FORE(4, "300-500人"),
+	FIVE(5, "500-1000人"),
+	SIX(6, "1000-10000人"),
+	SEVEN(7, "10000人以上"),;
 
 	private int value;
 
 	private String title;
 
-	private GenderEnum(int value, String title) {
+	private CompanySizeEnum(int value, String title) {
 		this.value = value;
 		this.title = title;
 	}
@@ -20,7 +31,7 @@ public enum GenderEnum {
 	 * @return String
 	 */
 	public static String getTitle(int code) {
-		for (GenderEnum en : values()) {
+		for (CompanySizeEnum en : values()) {
 			if (en.getValue() == code) {
 				return en.getTitle();
 			}

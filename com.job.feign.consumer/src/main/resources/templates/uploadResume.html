@@ -99,10 +99,10 @@
 		    timeout:5000,    //超时时间
 		    dataType:'text',    //返回的数据格式：json/xml/html/script/jsonp/text
 		    success:function(data){		 
-		    	if(data=="ok"){
+		    	if(data.code==0){
 		    		alert("上传成功！");
 		    	}else{
-		    		alert("上传失败,失败原因："+data);
+		    		alert("上传失败"+data);
 		    	}
 		    },
 		    error:function(){

@@ -8,9 +8,10 @@
     <result column="gender" property="gender" jdbcType="INTEGER" />
     <result column="id" property="id" jdbcType="VARCHAR" />
     <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.job.feign.provider.domain.Resume" extends="BaseResultMap" >
-    <result column="workExperienceList" property="workexperiencelist" jdbcType="LONGVARBINARY" />
+    <result column="workExperienceList" property="workexperiencelist" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -71,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    nid, age, degree, gender, id, major
+    nid, age, degree, gender, id, major, password
   </sql>
   <sql id="Blob_Column_List" >
     workExperienceList
@@ -127,10 +128,10 @@
   <insert id="insert" parameterType="com.job.feign.provider.domain.Resume" >
     insert into resume (nid, age, degree, 
       gender, id, major, 
-      workExperienceList)
+      password, workExperienceList)
     values (#{nid,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{degree,jdbcType=INTEGER}, 
       #{gender,jdbcType=INTEGER}, #{id,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
-      #{workexperiencelist,jdbcType=LONGVARBINARY})
+      #{password,jdbcType=VARCHAR}, #{workexperiencelist,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.job.feign.provider.domain.Resume" >
     insert into resume
@@ -152,6 +153,9 @@
       </if>
       <if test="major != null" >
         major,
+      </if>
+      <if test="password != null" >
+        password,
       </if>
       <if test="workexperiencelist != null" >
         workExperienceList,
@@ -176,8 +180,11 @@
       <if test="major != null" >
         #{major,jdbcType=VARCHAR},
       </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
       <if test="workexperiencelist != null" >
-        #{workexperiencelist,jdbcType=LONGVARBINARY},
+        #{workexperiencelist,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -208,8 +215,11 @@
       <if test="record.major != null" >
         major = #{record.major,jdbcType=VARCHAR},
       </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
       <if test="record.workexperiencelist != null" >
-        workExperienceList = #{record.workexperiencelist,jdbcType=LONGVARBINARY},
+        workExperienceList = #{record.workexperiencelist,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -224,7 +234,8 @@
       gender = #{record.gender,jdbcType=INTEGER},
       id = #{record.id,jdbcType=VARCHAR},
       major = #{record.major,jdbcType=VARCHAR},
-      workExperienceList = #{record.workexperiencelist,jdbcType=LONGVARBINARY}
+      password = #{record.password,jdbcType=VARCHAR},
+      workExperienceList = #{record.workexperiencelist,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -236,7 +247,8 @@
       degree = #{record.degree,jdbcType=INTEGER},
       gender = #{record.gender,jdbcType=INTEGER},
       id = #{record.id,jdbcType=VARCHAR},
-      major = #{record.major,jdbcType=VARCHAR}
+      major = #{record.major,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -259,8 +271,11 @@
       <if test="major != null" >
         major = #{major,jdbcType=VARCHAR},
       </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
       <if test="workexperiencelist != null" >
-        workExperienceList = #{workexperiencelist,jdbcType=LONGVARBINARY},
+        workExperienceList = #{workexperiencelist,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where nid = #{nid,jdbcType=VARCHAR}
@@ -272,7 +287,8 @@
       gender = #{gender,jdbcType=INTEGER},
       id = #{id,jdbcType=VARCHAR},
       major = #{major,jdbcType=VARCHAR},
-      workExperienceList = #{workexperiencelist,jdbcType=LONGVARBINARY}
+      password = #{password,jdbcType=VARCHAR},
+      workExperienceList = #{workexperiencelist,jdbcType=LONGVARCHAR}
     where nid = #{nid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.job.feign.provider.domain.Resume" >
@@ -281,11 +297,12 @@
       degree = #{degree,jdbcType=INTEGER},
       gender = #{gender,jdbcType=INTEGER},
       id = #{id,jdbcType=VARCHAR},
-      major = #{major,jdbcType=VARCHAR}
+      major = #{major,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR}
     where nid = #{nid,jdbcType=VARCHAR}
   </update>
   
-  <!-- 上传批处理 -->
+    <!-- 上传批处理 -->
   <insert id="batchInsertResume" parameterType="java.util.List">
 	insert into resume (nid, age, degree, 
       gender, id, major, 

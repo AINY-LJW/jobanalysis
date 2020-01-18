@@ -31,6 +31,20 @@ public interface UserFeignClient {
 	 */
 	@PostMapping(value = "resume/upload")
 	public R uploadJson(@RequestBody(required = false) @RequestParam("jsonObj") String jsonObj);
+	
+	/**
+	 * 根据关键词查找评论
+	 * 
+	 * @param pageNum
+	 * @param pageSize
+	 * @return EasyUIDataGridResult
+	 */
+	@PostMapping("resume/getResumeByKeywords")
+	//
+	EasyUIDataGridResult getResumeByKeywords(@RequestBody @RequestParam("page") int pageNum,
+			@RequestParam("rows") int pageSize, @RequestParam(value = "asin", required = false) String asin,
+			@RequestParam(value = "reviewerName", required = false) String reviewerName,
+			@RequestParam(value = "keyWord", required = false) String keyWord);
 	/**=====================================以下为评论分析  可以不看==========================================*/
 	/*
 	 * @GetMapping("/user/getName") public String getUser();

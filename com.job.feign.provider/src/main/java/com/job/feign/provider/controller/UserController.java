@@ -34,6 +34,7 @@ public class UserController {
 		if(selectByExample.size()!=0) {
 			return selectByExample.get(0);
 		}else {
+			// 简历		
 			return null;
 		}
 	}

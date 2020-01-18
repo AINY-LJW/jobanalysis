@@ -92,6 +92,13 @@ public class CommentFeignClientFallback implements FallbackFactory<UserFeignClie
 				// TODO Auto-generated method stub
 				return null;
 			}
+
+			@Override
+			public EasyUIDataGridResult getResumeByKeywords(int pageNum, int pageSize, String asin, String reviewerName,
+					String keyWord) {
+				// TODO Auto-generated method stub
+				return null;
+			}
 			
 		};
 	}

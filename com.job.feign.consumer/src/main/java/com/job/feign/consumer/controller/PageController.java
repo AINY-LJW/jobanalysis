@@ -13,7 +13,7 @@ import com.comment.common.domain.Comment;
 @Controller
 public class PageController {
 	/**
-	 * 上传json数据保存评论页面
+	 * 上传json数据保存简历页面
 	 * 
 	 * @param model
 	 * @return String
@@ -23,6 +23,16 @@ public class PageController {
 		return "uploadResume.html";
 	}
 	
+	/**
+	 * 上传json数据保存评论页面
+	 * 
+	 * @param model
+	 * @return String
+	 */
+	@RequestMapping(value = "allResume", method = RequestMethod.GET)
+	public String showAllResume(Model model) {
+		return "allResume.html";
+	}
 	/**=======================================分割线=================================*/
 //	@Autowired 
 //	private RestTemplate restTemplate;

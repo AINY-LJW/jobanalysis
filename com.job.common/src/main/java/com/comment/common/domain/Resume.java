@@ -1,4 +1,4 @@
-package com.job.feign.provider.domain;
+package com.comment.common.domain;
 
 public class Resume {
     private String nid;

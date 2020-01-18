@@ -1,15 +1,15 @@
 package com.comment.common.intf;
 
-public enum GenderEnum {
-	MAN(0, "男"),
-	WOMAN(1, "女"),
-	UNKNOW(2, "未知"),;
+public enum DegreerEnum {
+	ONE(0, "大专及以下(大专，中专，高中，初中，中技，职高，中职，高职)"),
+	TWO(1, "本科(本科)"),
+	THREE(2, "硕士及以上(硕士，博士，MBA，EMBA)"),;
 
 	private int value;
 
 	private String title;
 
-	private GenderEnum(int value, String title) {
+	private DegreerEnum(int value, String title) {
 		this.value = value;
 		this.title = title;
 	}
@@ -20,7 +20,7 @@ public enum GenderEnum {
 	 * @return String
 	 */
 	public static String getTitle(int code) {
-		for (GenderEnum en : values()) {
+		for (DegreerEnum en : values()) {
 			if (en.getValue() == code) {
 				return en.getTitle();
 			}

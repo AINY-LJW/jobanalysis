@@ -33,6 +33,7 @@ public interface ResumeMapper {
     int updateByPrimaryKeyWithBLOBs(Resume record);
 
     int updateByPrimaryKey(Resume record);
+    
     /**
      * 上传批处理
      * TODO
