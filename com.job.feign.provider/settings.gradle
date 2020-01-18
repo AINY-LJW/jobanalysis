@@ -1,0 +1,2 @@
+rootProject.name = 'com.job.feign.provider'
+//includeFlat 'com.job.common'
