@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>所有有用户评论</title>
+<title>所有简历信息</title>
 
 <!-- CSS -->
 <link rel="stylesheet"
@@ -54,14 +54,14 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-8 col-sm-offset-2 text">
-						<h1>所有用户评论</h1>
+						<h1>所有简历信息</h1>
 						<div class="description"></div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6 col-sm-offset-3 form-box">
 						<div class="form-top" style="height: 70%">
-
+							<span>只展示用户对外公开的数据哦</span>
 							<div class="form-top-right">
 								<i class="fa fa-key"></i>
 							</div>
@@ -74,6 +74,8 @@
 										<span>评论关键字:</span>
 										<input id="keyWord" style="line-height:26px;border:1px solid #ccc">
 										<a class="easyui-linkbutton" plain="true" onclick="doSearch()" id="serach" data-options="iconCls:'icon-search'">查找</a>
+										<a class="easyui-linkbutton" plain="true" onclick="exportExcel()"
+											id="serach" data-options="iconCls:'icon-sum'">导出excel</a>
 						</div>
 						<div class="form-bottom" style="height: 70%">
 						<table id="tt" class="easyui-datagrid"
@@ -88,11 +90,8 @@
 											<th field="gender_title" width="5%">性别</th>
 											<th field="degree_title" width="30%">学位</th>
 											<th field="major" width="20%" align="center">专业</th>
-											<!-- <th field="overall" width="5%" align="center">产品评级</th>
-											<th field="summary" width="10%">摘要</th>
-											<th field="unixreviewtime" width="7%">评论时间</th>  -->
-											<!-- <th field="reviewtime" width="10%" formatter:formatter(value)>评论时间</th> -->
-											<!-- <th field="reviewtext" width="47%">评论</th> -->
+											<th field="workExperienceListOb" width="40%"
+											align:"center" formatter=operate_formatter>工作经历</th>
 										</tr>
 									</thead>
 								</table>
@@ -103,7 +102,37 @@
 				</div>
 			</div>
 		</div>
+		<!-- 添加操作 -->
+		<div id="w" class="easyui-window" title="Modal Window"
+			data-options="modal:true,closed:true,iconCls:'icon-save'"
+			style="width: 300px; height: 300px; padding: 10px;">
+			<form id="ff" method="post" action="addDuty">
+				<table cellpadding="5">
+					<tr>
+						<td>值班人员:</td>
+						<td><input class="easyui-textbox" type="text" name="name"
+							data-options="required:true"></input></td>
+					</tr>
+					<tr>
+						<td>值班地点</td>
+						<td><input class="easyui-textbox" type="text" name="place"
+							data-options="required:true"></input></td>
+					</tr>
+					<tr>
+						<td>值班日期</td>
+						<td><input class="easyui-datebox" type="text" name="date"
+							data-options="required:true,validType:'date'"></input></td>
+					</tr>
 
+				</table>
+			</form>
+			<div style="text-align: center; padding: 5px">
+				<a href="javascript:void(0)" class="easyui-linkbutton"
+					onclick="submitForm()">提交</a> <a href="javascript:void(0)"
+					class="easyui-linkbutton" onclick="clearForm()">重置</a>
+			</div>
+		</div>
+		<!-- 添加操作 end-->
 	</div>
 
 
@@ -120,8 +149,25 @@
 </body>
 
 <script th:inline="javascript">
-
-
+	//工作经历
+	function operate_formatter(value, row, index) {
+		/* console.log(value,row,index,typeof(row)); */
+		var btn = "";
+		for (var i in value) { 
+		    btn += "<button onClick='openWorkModal("+JSON.stringify(value[i])+")' class='easyui-linkbutton'>"+value[i].position_name+"</button>"
+		}
+		//console.log(btn)
+		return btn;
+	}
+	//打开模态框
+	function openWorkModal(data){
+		console.log(data)
+		$('#w').window('open')
+	}
+	//导出excel
+	function exportExcel(){
+		$('#tt').datagrid('toExcel','dg.xls');	// export to excel
+	}
 	//用户搜索时触发
 	function doSearch(){
 		 $('#tt').datagrid('load',{

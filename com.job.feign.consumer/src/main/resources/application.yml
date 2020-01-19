@@ -13,8 +13,8 @@ spring:
       allow-bean-definition-overriding: true #允许重复注册
   devtools:
 # 取消自动刷新UI页面
-    livereload: 
-      enabled: false
+#    livereload: 
+#      enabled: false
 #     禁用重新启动
     restart: 
       enabled: true
