@@ -32,3 +32,8 @@ out/
 .vscode/
 /bin/
 /gradle/
+
+### my ###
+/.gradle/
+.classpath
+.project
