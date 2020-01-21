@@ -105,22 +105,25 @@
 		<!-- 添加操作 -->
 		<div id="w" class="easyui-window" title="Modal Window"
 			data-options="modal:true,closed:true,iconCls:'icon-save'"
-			style="width: 300px; height: 300px; padding: 10px;">
+			style="width: 800px; height: 300px; padding: 10px;">
 			<form id="ff" method="post" action="addDuty">
 				<table cellpadding="5">
+				<!-- id -->
+				<!-- <input class="easyui-textbox" type="text" name="id"
+							data-options="required:true" hidden></input> -->
 					<tr>
-						<td>值班人员:</td>
-						<td><input class="easyui-textbox" type="text" name="name"
-							data-options="required:true"></input></td>
+						<td>工作岗位:</td>
+						<td><input  id="position_name" class="" type="text" height="30" name="name" style="width:300px;height:20px;" readonly
+							data-options=""></input></td>
 					</tr>
 					<tr>
-						<td>值班地点</td>
-						<td><input class="easyui-textbox" type="text" name="place"
-							data-options="required:true"></input></td>
+						<td>行业</td>
+						<td><input id="industry" class="" type="text" height="30" name="place" style="width:300px;height:20px;" readonly
+							data-options=""></input></td>
 					</tr>
 					<tr>
-						<td>值班日期</td>
-						<td><input class="easyui-datebox" type="text" name="date"
+						<td>工资</td>
+						<td><input id="salary" class="" type="text" height="30" name="date" style="width:300px;height:20px;" readonly
 							data-options="required:true,validType:'date'"></input></td>
 					</tr>
 
@@ -154,6 +157,7 @@
 		/* console.log(value,row,index,typeof(row)); */
 		var btn = "";
 		for (var i in value) { 
+			// 操
 		    btn += "<button onClick='openWorkModal("+JSON.stringify(value[i])+")' class='easyui-linkbutton'>"+value[i].position_name+"</button>"
 		}
 		//console.log(btn)
@@ -161,8 +165,13 @@
 	}
 	//打开模态框
 	function openWorkModal(data){
-		console.log(data)
-		$('#w').window('open')
+		console.log(data);
+		console.log($('#position_name'));
+		$('#w').window('open');
+		$('#position_name').val(data.position_name)
+		$('#industry').val(data.industry)
+		$('#salary').val(data.salary)
+		
 	}
 	//导出excel
 	function exportExcel(){
@@ -188,5 +197,9 @@
 	}
 
 </script>
-
+<style>
+.ljw-textbox{
+width:200px;
+height:15px !imporant;}
+</style>
 </html>

@@ -11,13 +11,13 @@ info:
 spring:
   main:
       allow-bean-definition-overriding: true #允许重复注册
-  devtools:
+#  devtools:
 # 取消自动刷新UI页面
 #    livereload: 
 #      enabled: false
 #     禁用重新启动
-    restart: 
-      enabled: true
+#    restart: 
+#      enabled: true
   thymeleaf:
 #  生产环境设置为true 开发环境设置为false
     cache: true
