@@ -16,8 +16,10 @@ import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.comment.common.intf.CompanySizeEnum;
 import com.comment.common.intf.DegreerEnum;
 import com.comment.common.intf.GenderEnum;
+import com.comment.common.intf.SalaryEnum;
 import com.comment.common.vo.ResumeVO;
 import com.comment.common.vo.WorkExperienceVO;
 import com.comment.util.EasyUIDataGridResult;
@@ -159,6 +161,7 @@ public class ResumeServiceImpl implements IResumeService {
 				String industry = json.getString("industry");
 				Integer salary = Integer.parseInt(json.getString("salary"));
 				String type = json.getString("type");
+				String department = json.getString("department");
 				
 				WorkExperienceVO v = new WorkExperienceVO();
 				//是否可见				
@@ -166,10 +169,11 @@ public class ResumeServiceImpl implements IResumeService {
 				v.setEndDate(end_date);
 				v.setIndustry(industry);
 				v.setPosition_name(position_name);
-				v.setSalary(salary);
-				v.setSize(size);
+				v.setSalary(SalaryEnum.getTitle(salary));
+				v.setSize(CompanySizeEnum.getTitle(size));
 				v.setStartDate(start_date);
 				v.setType(type);
+				v.setDepartment(department);
 				workExperienceList.add(v);
 			}
 			resumeVO.setWorkExperienceListOb(workExperienceList);

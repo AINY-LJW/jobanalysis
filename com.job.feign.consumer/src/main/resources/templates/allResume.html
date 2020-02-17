@@ -117,8 +117,23 @@
 							data-options=""></input></td>
 					</tr>
 					<tr>
+						<td>部门:</td>
+						<td><input  id="department" class="" type="text" height="30" name="name" style="width:300px;height:20px;" readonly
+							data-options=""></input></td>
+					</tr>
+					<tr>
+						<td>类别</td>
+						<td><input id="type" class="" type="text" height="30" name="date" style="width:300px;height:20px;" readonly
+							data-options="required:true,validType:'date'"></input></td>
+					</tr>
+					<tr>
 						<td>行业</td>
 						<td><input id="industry" class="" type="text" height="30" name="place" style="width:300px;height:20px;" readonly
+							data-options=""></input></td>
+					</tr>
+					<tr>
+						<td>规模</td>
+						<td><input id="size" class="" type="text" height="30" name="place" style="width:300px;height:20px;" readonly
 							data-options=""></input></td>
 					</tr>
 					<tr>
@@ -126,7 +141,15 @@
 						<td><input id="salary" class="" type="text" height="30" name="date" style="width:300px;height:20px;" readonly
 							data-options="required:true,validType:'date'"></input></td>
 					</tr>
-
+					<tr>
+						<td>开始日期</td>
+						<td><input id="start_date" class="" type="text" height="30" name="place" style="width:300px;height:20px;"  formatter= "formatter(value)" readonly
+							data-options="required:true"></input></td>
+					</tr>
+					<tr>
+						<td>结束日期</td>
+						<td><input id="end_date" class="" type="text" height="30" name="place" style="width:300px;height:20px;" readonly formatter= "formatter(value)" ></input></td>
+					</tr>
 				</table>
 			</form>
 			<div style="text-align: center; padding: 5px">
@@ -165,12 +188,21 @@
 	}
 	//打开模态框
 	function openWorkModal(data){
-		console.log(data);
-		console.log($('#position_name'));
 		$('#w').window('open');
+		// 所在地
 		$('#position_name').val(data.position_name)
+		// 行业
 		$('#industry').val(data.industry)
+		// 薪水
 		$('#salary').val(data.salary)
+		//部门
+		$('#department').val(data.department ? data.department : '无'')
+		// 类别
+		$('#type').val(data.type)
+		// 规模
+		$('#size').val(data.size)
+		$('#start_date').val(this.formatter(data.startDate,true))
+		$('#end_date').val(this.formatter(data.endDate,false))
 		
 	}
 	//导出excel
@@ -187,8 +219,12 @@
 		
 		});  
 	}
-
-	function formatter(value){
+	
+	// 格式化日期
+	function formatter(value,flag){
+		if(!value){
+			return flag ? '未知' : '至今'
+		}
 		var date = new Date(value);
         var y = date.getFullYear();
         var m = date.getMonth() + 1;

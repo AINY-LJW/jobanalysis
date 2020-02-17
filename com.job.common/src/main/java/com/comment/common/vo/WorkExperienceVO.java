@@ -10,14 +10,16 @@ import java.util.Date;
 public class WorkExperienceVO {
 	private Date startDate;
 	private Date endDate;
+	// 部门
+	private String department;
 	//公司规模	
-	private Integer size;
+	private String size;
 	//职位
 	private String position_name;
 	//行业
 	private String industry;
 	//月薪
-	private Integer salary;
+	private String salary;
 	//类型	
 	private String type;
 	//是否可见  默认可见	
@@ -34,12 +36,6 @@ public class WorkExperienceVO {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public Integer getSize() {
-		return size;
-	}
-	public void setSize(Integer size) {
-		this.size = size;
-	}
 	public String getPosition_name() {
 		return position_name;
 	}
@@ -52,12 +48,6 @@ public class WorkExperienceVO {
 	public void setIndustry(String industry) {
 		this.industry = industry;
 	}
-	public Integer getSalary() {
-		return salary;
-	}
-	public void setSalary(Integer salary) {
-		this.salary = salary;
-	}
 	public String getType() {
 		return type;
 	}
@@ -69,6 +59,24 @@ public class WorkExperienceVO {
 	}
 	public void setCanSee(Boolean canSee) {
 		this.canSee = canSee;
+	}
+	public String getSize() {
+		return size;
+	}
+	public void setSize(String size) {
+		this.size = size;
+	}
+	public String getSalary() {
+		return salary;
+	}
+	public void setSalary(String salary) {
+		this.salary = salary;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 	
 }
