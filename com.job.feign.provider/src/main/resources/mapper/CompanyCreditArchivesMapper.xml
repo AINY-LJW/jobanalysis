@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.job.feign.provider.dao.CompanyCreditArchivesMapper" >
+  <resultMap id="BaseResultMap" type="com.job.feign.provider.domain.CompanyCreditArchives" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+    <result column="legalPerson" property="legalperson" jdbcType="VARCHAR" />
+    <result column="registeredCapital" property="registeredcapital" jdbcType="INTEGER" />
+    <result column="industry" property="industry" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="INTEGER" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="products" property="products" jdbcType="VARCHAR" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="cansee" property="cansee" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cid, grade, legalPerson, registeredCapital, industry, phone, location, products, 
+    introduction, cansee
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.job.feign.provider.domain.CompanyCreditArchivesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from company_credit_archives
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from company_credit_archives
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from company_credit_archives
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.job.feign.provider.domain.CompanyCreditArchivesExample" >
+    delete from company_credit_archives
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.job.feign.provider.domain.CompanyCreditArchives" >
+    insert into company_credit_archives (id, cid, grade, 
+      legalPerson, registeredCapital, industry, 
+      phone, location, products, 
+      introduction, cansee)
+    values (#{id,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{grade,jdbcType=VARCHAR}, 
+      #{legalperson,jdbcType=VARCHAR}, #{registeredcapital,jdbcType=INTEGER}, #{industry,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, #{products,jdbcType=VARCHAR}, 
+      #{introduction,jdbcType=VARCHAR}, #{cansee,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.job.feign.provider.domain.CompanyCreditArchives" >
+    insert into company_credit_archives
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="legalperson != null" >
+        legalPerson,
+      </if>
+      <if test="registeredcapital != null" >
+        registeredCapital,
+      </if>
+      <if test="industry != null" >
+        industry,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="products != null" >
+        products,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="cansee != null" >
+        cansee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="legalperson != null" >
+        #{legalperson,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredcapital != null" >
+        #{registeredcapital,jdbcType=INTEGER},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="products != null" >
+        #{products,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="cansee != null" >
+        #{cansee,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.job.feign.provider.domain.CompanyCreditArchivesExample" resultType="java.lang.Integer" >
+    select count(*) from company_credit_archives
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update company_credit_archives
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cid != null" >
+        cid = #{record.cid,jdbcType=INTEGER},
+      </if>
+      <if test="record.grade != null" >
+        grade = #{record.grade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalperson != null" >
+        legalPerson = #{record.legalperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registeredcapital != null" >
+        registeredCapital = #{record.registeredcapital,jdbcType=INTEGER},
+      </if>
+      <if test="record.industry != null" >
+        industry = #{record.industry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=INTEGER},
+      </if>
+      <if test="record.location != null" >
+        location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.products != null" >
+        products = #{record.products,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introduction != null" >
+        introduction = #{record.introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cansee != null" >
+        cansee = #{record.cansee,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update company_credit_archives
+    set id = #{record.id,jdbcType=INTEGER},
+      cid = #{record.cid,jdbcType=INTEGER},
+      grade = #{record.grade,jdbcType=VARCHAR},
+      legalPerson = #{record.legalperson,jdbcType=VARCHAR},
+      registeredCapital = #{record.registeredcapital,jdbcType=INTEGER},
+      industry = #{record.industry,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=INTEGER},
+      location = #{record.location,jdbcType=VARCHAR},
+      products = #{record.products,jdbcType=VARCHAR},
+      introduction = #{record.introduction,jdbcType=VARCHAR},
+      cansee = #{record.cansee,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.job.feign.provider.domain.CompanyCreditArchives" >
+    update company_credit_archives
+    <set >
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="legalperson != null" >
+        legalPerson = #{legalperson,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredcapital != null" >
+        registeredCapital = #{registeredcapital,jdbcType=INTEGER},
+      </if>
+      <if test="industry != null" >
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="products != null" >
+        products = #{products,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="cansee != null" >
+        cansee = #{cansee,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.job.feign.provider.domain.CompanyCreditArchives" >
+    update company_credit_archives
+    set cid = #{cid,jdbcType=INTEGER},
+      grade = #{grade,jdbcType=VARCHAR},
+      legalPerson = #{legalperson,jdbcType=VARCHAR},
+      registeredCapital = #{registeredcapital,jdbcType=INTEGER},
+      industry = #{industry,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=INTEGER},
+      location = #{location,jdbcType=VARCHAR},
+      products = #{products,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      cansee = #{cansee,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

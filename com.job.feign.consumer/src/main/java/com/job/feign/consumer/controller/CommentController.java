@@ -141,9 +141,11 @@ public class CommentController {
 	 * @return User
 	 */
 	@PostMapping(value = "loginForm")
-	 public User ifUserExist(@RequestBody @RequestParam("form-username") String name,@RequestParam("form-password") String pwd) {
-		User ifUserExist = userFeignClient.ifUserExist(name, pwd);
+	 public User ifUserExist(@RequestBody @RequestParam("form-username") String name,@RequestParam("form-password") String pwd,@RequestParam("form-identity") String identity) {
+		User ifUserExist = userFeignClient.ifUserExist(name, pwd,identity);
 		request.getSession().setAttribute("loginUser", ifUserExist);
+		// 身份		
+		request.getSession().setAttribute("identity", identity);
 		return ifUserExist;
 	}
 	@PostMapping(value = "exitLogin")

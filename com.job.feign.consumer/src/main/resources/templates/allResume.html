@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" 
+xmlns:th="http://www.thymeleaf.org">
 <head>
 
 <meta charset="utf-8">
@@ -143,12 +143,12 @@
 					</tr>
 					<tr>
 						<td>开始日期</td>
-						<td><input id="start_date" class="" type="text" height="30" name="place" style="width:300px;height:20px;"  formatter= "formatter(value)" readonly
+						<td><input id="start_date" class="" type="text" height="30" name="place" style="width:300px;height:20px;" readonly
 							data-options="required:true"></input></td>
 					</tr>
 					<tr>
 						<td>结束日期</td>
-						<td><input id="end_date" class="" type="text" height="30" name="place" style="width:300px;height:20px;" readonly formatter= "formatter(value)" ></input></td>
+						<td><input id="end_date" class="" type="text" height="30" name="place" style="width:300px;height:20px;" readonly  ></input></td>
 					</tr>
 				</table>
 			</form>
@@ -177,30 +177,27 @@
 <script th:inline="javascript">
 	//工作经历
 	function operate_formatter(value, row, index) {
-		/* console.log(value,row,index,typeof(row)); */
 		var btn = "";
 		for (var i in value) { 
-			// 操
-		    btn += "<button onClick='openWorkModal("+JSON.stringify(value[i])+")' class='easyui-linkbutton'>"+value[i].position_name+"</button>"
+		    btn += "<button onClick='openWorkModal("+JSON.stringify(value[i])+")' class='easyui-linkbutton'>"+value[i].position_name+"</button>";
 		}
-		//console.log(btn)
 		return btn;
 	}
 	//打开模态框
 	function openWorkModal(data){
 		$('#w').window('open');
 		// 所在地
-		$('#position_name').val(data.position_name)
+		$('#position_name').val(data.position_name);
 		// 行业
-		$('#industry').val(data.industry)
+		$('#industry').val(data.industry);
 		// 薪水
-		$('#salary').val(data.salary)
+		$('#salary').val(data.salary);
 		//部门
-		$('#department').val(data.department ? data.department : '无'')
+		$('#department').val(data.department ? data.department : '无');
 		// 类别
-		$('#type').val(data.type)
+		$('#type').val(data.type);
 		// 规模
-		$('#size').val(data.size)
+		$('#size').val(data.size);
 		$('#start_date').val(this.formatter(data.startDate,true))
 		$('#end_date').val(this.formatter(data.endDate,false))
 		
@@ -231,7 +228,6 @@
         var d = date.getDate();
         return y + '-' +m + '-' + d;
 	}
-
 </script>
 <style>
 .ljw-textbox{

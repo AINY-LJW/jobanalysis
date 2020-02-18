@@ -69,11 +69,6 @@ public class CommentFeignClientFallback implements FallbackFactory<UserFeignClie
 				return null;
 			}
 
-			@Override
-			public User ifUserExist(String name, String pwd) {
-				logger.error("登录校验异常");
-				return null;
-			}
 
 			@Override
 			public String getTextCloudJson() {
@@ -97,6 +92,12 @@ public class CommentFeignClientFallback implements FallbackFactory<UserFeignClie
 			public EasyUIDataGridResult getResumeByKeywords(int pageNum, int pageSize, String asin, String reviewerName,
 					String keyWord) {
 				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public User ifUserExist(String name, String pwd, String identity) {
+				logger.error("登录校验异常");
 				return null;
 			}
 			

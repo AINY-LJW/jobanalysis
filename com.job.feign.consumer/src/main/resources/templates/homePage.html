@@ -92,6 +92,10 @@
                 <!-- END RESPONSIVE MENU TOGGLER -->
                 <!-- BEGIN TOP NAVIGATION MENU -->
                 <ul class="nav pull-right">
+                    <li class="dropdown" id="header_notification_bar">
+                    	<a style="color:white;">欢迎您</a>
+                    	<a th:text="${session.loginUser.name}" style="color:white;"></a>
+                    </li>
                     <!-- BEGIN NOTIFICATION DROPDOWN -->
                     <li class="dropdown" id="header_notification_bar">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">

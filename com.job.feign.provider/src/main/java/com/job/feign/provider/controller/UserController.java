@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.job.feign.provider.dao.CompanyUserMapper;
 import com.job.feign.provider.dao.UserMapper;
+import com.job.feign.provider.domain.CompanyUser;
+import com.job.feign.provider.domain.CompanyUserExample;
 import com.job.feign.provider.domain.User;
 import com.job.feign.provider.domain.UserExample;
 import com.job.feign.provider.domain.UserExample.Criteria;
@@ -24,8 +27,27 @@ import com.job.feign.provider.domain.UserExample.Criteria;
 public class UserController {
 	@Autowired
 	private UserMapper mapper;
+	
+	@Autowired
+	private CompanyUserMapper companyUser;
+	@SuppressWarnings("unused")
 	@PostMapping(value = "/user/loginForm")
-	 public User ifUserExist(@RequestBody @RequestParam("form-username") String name,@RequestParam("form-password") String pwd) {
+	 public User ifUserExist(@RequestBody @RequestParam("form-username") String name,@RequestParam("form-password") String pwd,@RequestParam("form-identity") String identity) {
+		if ("company".equals(identity)) {
+			return getCompanyUser(name, pwd);
+		} else if ("user".equals(identity)){
+			return getUser(name, pwd) ;
+		}else {
+			return null;
+		}
+	}
+	/**
+	 * 普通用户（因为没有应聘者账号数据  所以用这个）
+	 * TODO
+	 * @param 
+	 * @return User
+	 */
+	private User getUser(String name, String pwd) {
 		UserExample example=new UserExample();
 		Criteria createCriteria = example.createCriteria();
 		createCriteria.andPhoneNumberEqualTo(name);
@@ -33,6 +55,26 @@ public class UserController {
 		List<User> selectByExample = mapper.selectByExample(example);
 		if(selectByExample.size()!=0) {
 			return selectByExample.get(0);
+		}else {
+			// 简历		
+			return null;
+		}
+	}
+
+	/**
+	 * 公司用户
+	 * TODO
+	 * @param 
+	 * @return User
+	 */
+	private User getCompanyUser(String name, String pwd) {
+		CompanyUserExample companyExample = new CompanyUserExample();
+		com.job.feign.provider.domain.CompanyUserExample.Criteria createCriteria2 = companyExample.createCriteria();
+		createCriteria2.andPhoneNumberEqualTo(name);
+		createCriteria2.andPasswordEqualTo(pwd);
+		List<CompanyUser> selectByExample2 = companyUser.selectByExample(companyExample);
+		if(selectByExample2.size()!=0) {
+			return selectByExample2.get(0);
 		}else {
 			// 简历		
 			return null;
