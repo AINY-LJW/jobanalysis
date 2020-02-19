@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.comment.util.EasyUIDataGridResult;
 import com.comment.util.R;
-import com.job.feign.consumer.feign.ResumeFeignClient;
 import com.job.feign.consumer.feign.UserFeignClient;
 @RestController()
 @RequestMapping("/resume")

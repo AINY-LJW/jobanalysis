@@ -100,6 +100,20 @@ public class CommentFeignClientFallback implements FallbackFactory<UserFeignClie
 				logger.error("登录校验异常");
 				return null;
 			}
+
+			@Override
+			public EasyUIDataGridResult getAllCompanyCredit(int pageNum, int pageSize, String asin, String reviewerName,
+					String keyWord) {
+				logger.error("获取所有信誉档案异常");
+				return null;
+			}
+
+			@Override
+			public EasyUIDataGridResult getOwnCompanyCredit(int pageNum, int pageSize, String asin, String reviewerName,
+					String keyWord, int companyId) {
+				// TODO Auto-generated method stub
+				return null;
+			}
 			
 		};
 	}

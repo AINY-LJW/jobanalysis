@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -12,6 +13,28 @@ import com.comment.common.domain.Comment;
 
 @Controller
 public class PageController {
+	/**=======================================以下公司信誉档案相关=================================*/
+	/**
+	 * 本公司信誉档案
+	 * TODO
+	 * @param 
+	 * @return String
+	 */
+	@GetMapping(value = "ownCompanyCredit")
+	public String showOwnCompanyCreditPage(Model model) {
+		return "ownCompanyCredit.html";
+	}
+	/**
+	 * 公司信誉档案
+	 * TODO
+	 * @param 
+	 * @return String
+	 */
+	@RequestMapping(value = "allCompanyCredit", method = RequestMethod.GET)
+	public String showAllCompanyCreditPage(Model model) {
+		return "allCompanyCredit.html";
+	}
+	/**=======================================以下简历相关=================================*/
 	/**
 	 * 上传json数据保存简历页面
 	 * 

@@ -23,6 +23,19 @@ import com.comment.util.R;
 //@Component
 @FeignClient(name="commentAnalysis-provider",fallbackFactory = CommentFeignClientFallback.class)
 public interface UserFeignClient {
+	/**=====================================以下公司信誉档案==========================================*/
+	@PostMapping("companyCredit/getOwnCompanyCredit")
+	public EasyUIDataGridResult getOwnCompanyCredit(@RequestBody @RequestParam("page") int pageNum,
+			@RequestParam("rows") int pageSize, @RequestParam(value = "asin", required = false) String asin,
+			@RequestParam(value = "reviewerName", required = false) String reviewerName,
+			@RequestParam(value = "keyWord", required = false) String keyWord,@RequestParam("companyId") int companyId);
+	
+	@PostMapping("companyCredit/getAllCompanyCredit")
+	public EasyUIDataGridResult getAllCompanyCredit(@RequestBody @RequestParam("page") int pageNum,
+			@RequestParam("rows") int pageSize, @RequestParam(value = "asin", required = false) String asin,
+			@RequestParam(value = "reviewerName", required = false) String reviewerName,
+			@RequestParam(value = "keyWord", required = false) String keyWord) ;
+	/**=====================================以下简历==========================================*/
 	/**
 	 * 上传简历json
 	 * TODO

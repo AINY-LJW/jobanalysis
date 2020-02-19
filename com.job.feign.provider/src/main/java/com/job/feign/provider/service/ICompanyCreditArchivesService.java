@@ -10,4 +10,12 @@ public interface ICompanyCreditArchivesService {
 	 * @return R
 	 */
 	public EasyUIDataGridResult getAllCompanyCreditCanSee(int pageNum, int pageSize);
+	
+	/**
+	 * 本公司信誉档案
+	 * TODO
+	 * @param 
+	 * @return EasyUIDataGridResult
+	 */
+	public EasyUIDataGridResult getOwnCompanyCreditCanSee(int pageNum, int pageSize,int companyId);
 }
