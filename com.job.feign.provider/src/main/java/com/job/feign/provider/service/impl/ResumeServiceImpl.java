@@ -123,7 +123,9 @@ public class ResumeServiceImpl implements IResumeService {
 	}
 
 	@Override
-	public EasyUIDataGridResult getAllRsume(int pageNum, int pageSize) {
+	public EasyUIDataGridResult getAllRsume(int pageNum, int pageSize,String identity) {
+		// 是否企业用户		
+		boolean iscompanyUser = "company".equals(identity);
 		PageMethod.startPage(pageNum, pageSize);
 		ResumeExample example =new ResumeExample();
 //		Criteria createCriteria = example.createCriteria();
@@ -138,10 +140,12 @@ public class ResumeServiceImpl implements IResumeService {
 			JSONArray jsonArray = JSON.parseArray(resumeVO.getWorkexperiencelist().toString());
 			if(jsonArray == null ) {return;}
 			List<WorkExperienceVO> workExperienceList = new ArrayList<>();
+			int i =0;
 			for (Object ob : jsonArray) {
 				JSONObject json = (JSONObject) ob;
 				String canSeeob = json.getString("canSee");
-				if(canSeeob != null && Boolean.parseBoolean(canSeeob)) {
+				// 企业用户不可见
+				if(iscompanyUser && canSeeob != null && !Boolean.parseBoolean(canSeeob)) {
 					//不可见					
 					continue;
 				}
@@ -174,6 +178,7 @@ public class ResumeServiceImpl implements IResumeService {
 				v.setStartDate(start_date);
 				v.setType(type);
 				v.setDepartment(department);
+				v.setNum(i++);
 				workExperienceList.add(v);
 			}
 			resumeVO.setWorkExperienceListOb(workExperienceList);
@@ -187,6 +192,21 @@ public class ResumeServiceImpl implements IResumeService {
 		dataGridResult.setRows(allResumesVo);
 		dataGridResult.setTotal(pageInfo.getTotal());
 		return dataGridResult;
+	}
+
+	@Override
+	public int changeState(String id,int index) {
+		Resume selectByPrimaryKey = resumeMapper.selectByPrimaryKey(id);
+		JSONArray jsonArray = JSON.parseArray(selectByPrimaryKey.getWorkexperiencelist().toString());
+		JSONObject json = (JSONObject) jsonArray.get(index);
+		if(!json.containsKey("canSee")) {
+			json.put("canSee", false);
+		} else {
+			json.put("canSee", !json.getBooleanValue("canSee"));
+		}
+		selectByPrimaryKey.setWorkexperiencelist(jsonArray.toString());
+		
+		return resumeMapper.updateByPrimaryKeyWithBLOBs(selectByPrimaryKey);
 	}
 
 

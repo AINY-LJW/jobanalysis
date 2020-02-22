@@ -25,5 +25,14 @@ public interface IResumeService {
 	 * @param 
 	 * @return R
 	 */
-	public EasyUIDataGridResult getAllRsume(int pageNum, int pageSize);
+	public EasyUIDataGridResult getAllRsume(int pageNum, int pageSize,String identity);
+	
+	/**
+	 * 更改状态
+	 * TODO
+	 * @param 
+	 * @return int
+	 */
+	public int changeState(String id, int index);
+	
 }

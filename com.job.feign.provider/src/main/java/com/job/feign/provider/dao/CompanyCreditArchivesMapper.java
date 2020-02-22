@@ -7,6 +7,7 @@ import com.job.feign.provider.domain.CompanyCreditArchivesVO;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 public interface CompanyCreditArchivesMapper {
     int countByExample(CompanyCreditArchivesExample example);
@@ -39,4 +40,22 @@ public interface CompanyCreditArchivesMapper {
      */
     @Select("select t.* ,t2.name from company_credit_archives  t join company_user t2 on t2.id = t.cid where t.cansee = 1")
     List<CompanyCreditArchivesVO> selectAllCanSee();
+    
+    /**
+     * 更新状态
+     * TODO
+     * @param 
+     * @return int
+     */
+    @Update("update company_credit_archives set cansee =#{cansee} where id = #{id}")
+    int updateState(CompanyCreditArchives record);
+    
+    /**
+     * 查询热门行业
+     * TODO
+     * @param 
+     * @return List<String>
+     */
+    @Select("select industry from company_credit_archives limit 0 ,200;")
+    List<String> getIndustry();
 }

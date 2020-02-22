@@ -89,13 +89,6 @@ public class CommentFeignClientFallback implements FallbackFactory<UserFeignClie
 			}
 
 			@Override
-			public EasyUIDataGridResult getResumeByKeywords(int pageNum, int pageSize, String asin, String reviewerName,
-					String keyWord) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
 			public User ifUserExist(String name, String pwd, String identity) {
 				logger.error("登录校验异常");
 				return null;
@@ -111,6 +104,31 @@ public class CommentFeignClientFallback implements FallbackFactory<UserFeignClie
 			@Override
 			public EasyUIDataGridResult getOwnCompanyCredit(int pageNum, int pageSize, String asin, String reviewerName,
 					String keyWord, int companyId) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public R changeCompanyCrediState(int id, boolean state) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public String getTextCloudJsonForIndustry() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public R changeResumeState(String id, int index) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public EasyUIDataGridResult getResumeByKeywords(int pageNum, int pageSize, String asin, String reviewerName,
+					String keyWord, String identity) {
 				// TODO Auto-generated method stub
 				return null;
 			}

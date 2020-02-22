@@ -150,12 +150,22 @@ xmlns:th="http://www.thymeleaf.org">
 						<td>结束日期</td>
 						<td><input id="end_date" class="" type="text" height="30" name="place" style="width:300px;height:20px;" readonly  ></input></td>
 					</tr>
+					<tr>
+						<td>状态</td>
+						<td><input id="canSee" class="" type="text" height="30" name="place" style="width:300px;height:20px;" readonly  ></input></td>
+					</tr>
+					<tr>
+						 <td><input id="tindex"  type="hidden" height="30" name="index" style="width:300px;height:20px;" readonly ></input></td>
+						<td><input id="tid" type="hidden" height="30" name="id" style="width:300px;height:20px;" readonly ></input></td>
+					</tr>
+					
+					
 				</table>
 			</form>
-			<div style="text-align: center; padding: 5px">
-				<a href="javascript:void(0)" class="easyui-linkbutton"
-					onclick="submitForm()">提交</a> <a href="javascript:void(0)"
-					class="easyui-linkbutton" onclick="clearForm()">重置</a>
+			<div style="text-align: center; padding: 5px" id = "change">
+				<!-- 修改状态 -->
+				
+ 				<button id="btnchange" onclick="changeState()">更改状态</button>
 			</div>
 		</div>
 		<!-- 添加操作 end-->
@@ -178,13 +188,14 @@ xmlns:th="http://www.thymeleaf.org">
 	//工作经历
 	function operate_formatter(value, row, index) {
 		var btn = "";
+		var id = row.nid;
 		for (var i in value) { 
-		    btn += "<button onClick='openWorkModal("+JSON.stringify(value[i])+")' class='easyui-linkbutton'>"+value[i].position_name+"</button>";
+		    btn += "<button onClick='openWorkModal("+JSON.stringify(value[i])+",\""+id+"\")' class='easyui-linkbutton'>"+value[i].position_name+"</button>";
 		}
 		return btn;
 	}
 	//打开模态框
-	function openWorkModal(data){
+	function openWorkModal(data,id){
 		$('#w').window('open');
 		// 所在地
 		$('#position_name').val(data.position_name);
@@ -200,7 +211,49 @@ xmlns:th="http://www.thymeleaf.org">
 		$('#size').val(data.size);
 		$('#start_date').val(this.formatter(data.startDate,true))
 		$('#end_date').val(this.formatter(data.endDate,false))
+		$('#canSee').val(data.canSee ? '公开' : '非公开');
+		$('#tid').val(id);
+		$('#tindex').val(data.num);
+		var identity = $.session("identity");
+		if(identity === 'user'){
+			$("#change").show();
+			//$("#btnchange").removeAttr(“onclick”);
+			//$("#btnchange").attr("onclick","changeState()");
+			//$("#btnchange").click(function(){
+			     //alert("hahah") ;
+			//});
+		}else{
+			$("#change").hide();
+		}
 		
+	}
+	
+	// 更改状态
+	function changeState(){
+		var id = $('#tid').val();
+		var index = $('#tindex').val();
+		var cansee = $('#canSee').val();
+		$.ajax({
+			  type: 'POST',
+			  url: "resume/changeState",
+			  data:{
+			    id:id,
+			    index:index
+			  },
+			  success: function(data){
+				  if(data.code === 0){
+					  // 刷新表格
+					 // $('#tt').datagrid("reload");
+					  alert('更新状态成功' );
+					  $('#canSee').val(cansee === '非公开' ? '公开' : '非公开');
+				  }else {
+					  alert('更新状态失败：' + data.msg)
+				  }
+			  },
+			  error: function(){
+			    alert('更新状态失败')
+			  }
+		});
 	}
 	//导出excel
 	function exportExcel(){

@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.comment.util.EasyUIDataGridResult;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
@@ -73,6 +75,29 @@ public class CompanyCreditArchivesServiceImpl implements ICompanyCreditArchivesS
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	@Override
+	public int changeOwnCompanyCreditCanseeState(int id, boolean cansee) {
+		CompanyCreditArchives record =new CompanyCreditArchives();
+		record.setId(id);
+		record.setCansee(cansee);
+		return creditMapper.updateState(record);
+	}
+
+	@Override
+	public String getIndustryJson() {
+		JSONArray json = new JSONArray();
+		JSONObject o = null;
+		List<String> industry = creditMapper.getIndustry();
+		for (String string : industry) {
+			o = new JSONObject();
+			o.put("name",string);
+			// 随机大小
+			o.put("value",Math.random()*100);
+			json.add(o);
+		}
+		return json.toString();
 	}
 
 }

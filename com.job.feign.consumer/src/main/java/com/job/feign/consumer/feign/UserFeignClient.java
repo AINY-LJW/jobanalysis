@@ -24,6 +24,19 @@ import com.comment.util.R;
 @FeignClient(name="commentAnalysis-provider",fallbackFactory = CommentFeignClientFallback.class)
 public interface UserFeignClient {
 	/**=====================================以下公司信誉档案==========================================*/
+	
+	/**
+	 * 返回json数据做词云图
+	 * 
+	 * @return String
+	 */
+	@GetMapping("/companyCredit/getTextCloudJson")
+	public String getTextCloudJsonForIndustry();
+	
+	@PostMapping("companyCredit/changeCompanyCrediState")
+	public R changeCompanyCrediState(@RequestBody @RequestParam("id") int id,
+			@RequestParam("state") boolean state) ;
+	
 	@PostMapping("companyCredit/getOwnCompanyCredit")
 	public EasyUIDataGridResult getOwnCompanyCredit(@RequestBody @RequestParam("page") int pageNum,
 			@RequestParam("rows") int pageSize, @RequestParam(value = "asin", required = false) String asin,
@@ -36,6 +49,17 @@ public interface UserFeignClient {
 			@RequestParam(value = "reviewerName", required = false) String reviewerName,
 			@RequestParam(value = "keyWord", required = false) String keyWord) ;
 	/**=====================================以下简历==========================================*/
+	
+	/**
+	 * 更改个人经历公开状态
+	 * TODO
+	 * @param 
+	 * @return R
+	 */
+	@PostMapping("resume/changeState")
+	public R changeResumeState(@RequestBody @RequestParam("id") String id,
+			@RequestParam("index") int index);
+	
 	/**
 	 * 上传简历json
 	 * TODO
@@ -57,7 +81,7 @@ public interface UserFeignClient {
 	EasyUIDataGridResult getResumeByKeywords(@RequestBody @RequestParam("page") int pageNum,
 			@RequestParam("rows") int pageSize, @RequestParam(value = "asin", required = false) String asin,
 			@RequestParam(value = "reviewerName", required = false) String reviewerName,
-			@RequestParam(value = "keyWord", required = false) String keyWord);
+			@RequestParam(value = "keyWord", required = false) String keyWord, @RequestParam("identity") String identity);
 	/**=====================================以下为评论分析  可以不看==========================================*/
 	/*
 	 * @GetMapping("/user/getName") public String getUser();

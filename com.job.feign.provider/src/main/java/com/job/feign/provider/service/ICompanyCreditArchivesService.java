@@ -18,4 +18,21 @@ public interface ICompanyCreditArchivesService {
 	 * @return EasyUIDataGridResult
 	 */
 	public EasyUIDataGridResult getOwnCompanyCreditCanSee(int pageNum, int pageSize,int companyId);
+	
+	/**
+	 * 改变状态  公开 不公开
+	 * TODO
+	 * @param 
+	 * @return R
+	 */
+	public int changeOwnCompanyCreditCanseeState(int id,boolean state);
+	
+	
+	/**
+	 * 获取热门行业
+	 * TODO
+	 * @param 
+	 * @return String
+	 */
+	public String getIndustryJson();
 }

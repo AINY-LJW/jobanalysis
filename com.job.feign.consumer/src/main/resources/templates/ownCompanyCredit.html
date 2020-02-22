@@ -157,12 +157,29 @@
 		//return '<a href="#" onclick="changeState('+ row.id + ',' +row.cansee+')"  class="easyui-linkbutton" style="color:red;">'+(row.cansee ? '公开' : '不公开')+'</a>';
 		return '<a href="#" name="opera" class="easyui-linkbutton" style="color:red;" onclick="changeState('+id + ',' + row.cansee +')">更改</a>';
 	}
-	//
+	// 更改状态
 	function changeState(id, cansee){
-		console.log('cansee')
 		if(confirm("您确定要更改此条信誉当更状态为" +(cansee ? "非公开" : "公开") +"?")){
-			 　　//点击确定后操作
-			alert("yes");
+			$.ajax({
+				  type: 'POST',
+				  url: "companyCredit/changeCompanyCrediState",
+				  data:{
+				    id:id,
+				    state:!cansee
+				  },
+				  success: function(data){
+				    	console.log(data, 'ljw')
+					  if(data.code === 0){
+						  // 刷新表格
+						  $('#tt').datagrid("reload");
+					  }else {
+						  alert('更新状态失败：' + data.msg)
+					  }
+				  },
+				  error: function(){
+				    alert('更新状态失败')
+				  }
+				})
 			　　
 			}
 		/* $.messager.confirm("操作提示", "您确定要更改此条信誉当更状态为", function (data) {

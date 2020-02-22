@@ -8,6 +8,7 @@ import java.util.Date;
  * @version 2020年1月18日
  */
 public class WorkExperienceVO {
+	private int num;//下标
 	private Date startDate;
 	private Date endDate;
 	// 部门
@@ -77,6 +78,12 @@ public class WorkExperienceVO {
 	}
 	public void setDepartment(String department) {
 		this.department = department;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
 	}
 	
 }
