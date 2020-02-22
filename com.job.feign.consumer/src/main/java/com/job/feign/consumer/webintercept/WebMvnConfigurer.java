@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  *
  * <p>Copyright: 版权所有 (c) 2002 - 2008<br>
  *
- * @author lijiawen
+ * @author WK
  * @version 2019年2月20日
  */
 @SuppressWarnings("deprecation")
@@ -28,7 +28,7 @@ public class WebMvnConfigurer extends WebMvcConfigurerAdapter{
     	//最终使用单独配置的方式，有待改善）
 //        registry.addInterceptor(webInterceptor).excludePathPatterns("/jw-crz/token");
 //        registry.addInterceptor(webInterceptor).addPathPatterns("/**").excludePathPatterns("/jw-crz/login").excludePathPatterns("/error");
-    	 registry.addInterceptor(new WebInterceptor()).addPathPatterns("/homePage").excludePathPatterns(notLoginInterceptPaths);
+    	 registry.addInterceptor(new WebInterceptor()).addPathPatterns("/homePage","/").excludePathPatterns(notLoginInterceptPaths);
 //        registry.addInterceptor(webInterceptor).excludePathPatterns("/error");
         registry.addInterceptor(webInterceptor).addPathPatterns("/**/ryclxx");
         registry.addInterceptor(webInterceptor).addPathPatterns("/**/xzyh");

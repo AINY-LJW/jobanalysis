@@ -5,8 +5,11 @@ import com.job.feign.provider.domain.CompanyCreditArchivesExample;
 import com.job.feign.provider.domain.CompanyCreditArchivesVO;
 
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 
 public interface CompanyCreditArchivesMapper {
@@ -38,8 +41,9 @@ public interface CompanyCreditArchivesMapper {
      * @param 
      * @return List<CompanyCreditArchives>
      */
-    @Select("select t.* ,t2.name from company_credit_archives  t join company_user t2 on t2.id = t.cid where t.cansee = 1")
-    List<CompanyCreditArchivesVO> selectAllCanSee();
+//    @Select("select t.* ,t2.name from company_credit_archives  t join company_user t2 on t2.id = t.cid where t.cansee = 1")
+    @SelectProvider(type = CompanyCreditArchivesSqlProvider.class,method="getAll")
+    List<CompanyCreditArchivesVO> selectAllCanSee(Map<String, String> map);
     
     /**
      * 更新状态

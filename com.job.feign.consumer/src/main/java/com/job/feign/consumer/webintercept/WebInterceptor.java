@@ -15,7 +15,7 @@ import com.comment.common.domain.User;
  *
  * <p>Copyright: 版权所有 (c) 2002 - 2008<br>
  *
- * @author lijiawen
+ * @author WK
  * @version 2019年2月20日
  */
 

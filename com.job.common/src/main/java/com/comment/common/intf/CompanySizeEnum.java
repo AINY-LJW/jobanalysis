@@ -4,7 +4,7 @@ package com.comment.common.intf;
  * 
  * 简述部分:公司规模
  *
- * @author lijiawen
+ * @author WK
  * @version 2020年1月18日
  */
 public enum CompanySizeEnum {

@@ -15,7 +15,7 @@ import com.comment.util.R;
  * 简述部分: * Feign接口，并增加 @FeignClient(name="service-user") 注解用以适应Eureka和Ribbon，
  * 里面的方法是和服务端提供的接口对应的
  *
- * @author lijiawen
+ * @author WK
  * @version 2020年1月23日
  */
 //注解里面写你在  Eureka注册的提供服务者的名字

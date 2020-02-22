@@ -8,7 +8,7 @@ import com.comment.util.R;
  * 
  * 简述部分:简历Service
  *
- * @author lijiawen
+ * @author WK
  * @version 2020年1月18日
  */
 public interface IResumeService {
@@ -25,7 +25,7 @@ public interface IResumeService {
 	 * @param 
 	 * @return R
 	 */
-	public EasyUIDataGridResult getAllRsume(int pageNum, int pageSize,String identity);
+	public EasyUIDataGridResult getAllRsume(int pageNum, int pageSize,String identity,String major);
 	
 	/**
 	 * 更改状态

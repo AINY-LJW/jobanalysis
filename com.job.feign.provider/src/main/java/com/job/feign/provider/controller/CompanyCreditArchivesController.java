@@ -15,7 +15,7 @@ import com.job.feign.provider.service.ICompanyCreditArchivesService;
  * 
  * 简述部分: 信誉档案
  *
- * @author lijiawen
+ * @author WK
  * @version 2020年2月18日
  */
 @RestController()
@@ -34,7 +34,7 @@ public class CompanyCreditArchivesController {
 			@RequestParam("rows") int pageSize, @RequestParam(value = "asin", required = false) String asin,
 			@RequestParam(value = "reviewerName", required = false) String reviewerName,
 			@RequestParam(value = "keyWord", required = false) String keyWord) {
-				return companyCreditArchivesService.getAllCompanyCreditCanSee(pageNum, pageSize);
+				return companyCreditArchivesService.getAllCompanyCreditCanSee(pageNum, pageSize,asin,reviewerName,keyWord);
 		
 	}
 	

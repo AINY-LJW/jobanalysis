@@ -29,6 +29,7 @@ import com.github.pagehelper.page.PageMethod;
 import com.job.feign.provider.dao.ResumeMapper;
 import com.job.feign.provider.domain.Resume;
 import com.job.feign.provider.domain.ResumeExample;
+import com.job.feign.provider.domain.ResumeExample.Criteria;
 import com.job.feign.provider.service.IResumeService;
 
 /**
@@ -36,7 +37,7 @@ import com.job.feign.provider.service.IResumeService;
  * 简述部分:Service实现类
  * 
  *
- * @author lijiawen
+ * @author WK
  * @version 2020年1月18日
  */
 @Service
@@ -123,13 +124,17 @@ public class ResumeServiceImpl implements IResumeService {
 	}
 
 	@Override
-	public EasyUIDataGridResult getAllRsume(int pageNum, int pageSize,String identity) {
+	public EasyUIDataGridResult getAllRsume(int pageNum, int pageSize,String identity,String major) {
 		// 是否企业用户		
 		boolean iscompanyUser = "company".equals(identity);
 		PageMethod.startPage(pageNum, pageSize);
 		ResumeExample example =new ResumeExample();
-//		Criteria createCriteria = example.createCriteria();
+		Criteria createCriteria = example.createCriteria();
 //		List<Resume> allResumes = resumeMapper.selectByExample(example);
+		// 按照专业模糊查询		
+		if(major!= null && !"".equals(major)) {
+			createCriteria.andMajorLike("%"+major+"%");
+		}
 		List<Resume> allResumes = resumeMapper.selectByExampleWithBLOBs(example);
 		List<ResumeVO> allResumesVo = new ArrayList<>();
 		

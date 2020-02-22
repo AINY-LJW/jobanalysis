@@ -8,7 +8,7 @@ import com.comment.common.domain.Resume;
  * 
  * 简述部分:
  *
- * @author lijiawen
+ * @author WK
  * @version 2020年1月18日
  */
 public class ResumeVO extends Resume{

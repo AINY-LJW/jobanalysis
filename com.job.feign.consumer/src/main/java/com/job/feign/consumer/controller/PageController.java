@@ -3,6 +3,9 @@ package com.job.feign.consumer.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +16,8 @@ import com.comment.common.domain.Comment;
 
 @Controller
 public class PageController {
+	@Autowired
+	private HttpServletRequest request;
 	/**=======================================以下公司信誉档案相关=================================*/
 	/**
 	 * 本公司信誉档案
@@ -109,6 +114,19 @@ public class PageController {
 	 */
 	@RequestMapping(value = "homePage", method = RequestMethod.GET)
 	public String showHomePage(Model model) {
+		model.addAttribute("identity", request.getSession().getAttribute("identity"));
+		return "homePage.html";
+	}
+	
+	/**
+	 * 进入首页
+	 * 
+	 * @param model
+	 * @return String
+	 */
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String showHomePage1(Model model) {
+		model.addAttribute("identity", request.getSession().getAttribute("identity"));
 		return "homePage.html";
 	}
 
@@ -198,5 +216,16 @@ public class PageController {
 	@RequestMapping(value = "commentStatistics", method = RequestMethod.GET)
 	public String showcommentStatistics(Model model) {
 		return "commentStatistics.html";
+	}
+	
+	@RequestMapping(value = "exit", method = RequestMethod.GET)
+	public String exit(Model model) {
+		try {
+			request.getSession().removeAttribute("identity");
+			request.getSession().removeAttribute("identity");
+			return "login.html";
+		} catch (Exception e) {
+			return "homePage.html";
+		}
 	}
 }

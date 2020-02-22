@@ -1,6 +1,8 @@
 package com.job.feign.provider.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +25,8 @@ import com.job.feign.provider.service.ICompanyCreditArchivesService;
  * 
  * 简述部分:企业信誉档案
  * 
- * Copyright: 版权所有 (c) JOIN-CHEER Company: 久其
  *
- * @author lijiawen
+ * @author WK
  * @version 2020年2月18日
  */
 @Service
@@ -36,7 +37,7 @@ public class CompanyCreditArchivesServiceImpl implements ICompanyCreditArchivesS
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Override
-	public EasyUIDataGridResult getAllCompanyCreditCanSee(int pageNum, int pageSize) {
+	public EasyUIDataGridResult getAllCompanyCreditCanSee(int pageNum, int pageSize,String legalperson,String industry,String companyName) {
 		try {
 			PageMethod.startPage(pageNum, pageSize);
 //			CompanyCreditArchivesExample example = new CompanyCreditArchivesExample();
@@ -44,7 +45,11 @@ public class CompanyCreditArchivesServiceImpl implements ICompanyCreditArchivesS
 //			// 可见的		
 //			createCriteria.andCanseeEqualTo(true);
 //			List<CompanyCreditArchives> list = creditMapper.selectByExample(example);
-			List<CompanyCreditArchivesVO> list = creditMapper.selectAllCanSee();
+			Map<String, String> map =new HashMap<>();
+			map.put("legalperson", legalperson);
+			map.put("industry", industry);
+			map.put("companyName", companyName);
+			List<CompanyCreditArchivesVO> list = creditMapper.selectAllCanSee(map);
 			EasyUIDataGridResult dataGridResult = new EasyUIDataGridResult();
 			PageInfo<CompanyCreditArchivesVO> pageInfo = new PageInfo<>(list);
 			dataGridResult.setRows(list);

@@ -15,7 +15,7 @@ import feign.hystrix.FallbackFactory;
  *
  * <p>Copyright: 版权所有 (c) 2002 - 2008<br>
  *
- * @author lijiawen
+ * @author WK
  * @version 2019年1月21日
  */
 @Component

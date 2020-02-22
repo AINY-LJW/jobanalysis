@@ -93,7 +93,7 @@
                 <!-- BEGIN TOP NAVIGATION MENU -->
                 <ul class="nav pull-right">
                     <li class="dropdown" id="header_notification_bar">
-                    	<a style="color:white;">欢迎您</a>
+                    	<!-- <a style="color:white;">欢迎您</a> -->
                     	<a th:text="${session.loginUser.name}" style="color:white;"></a>
                     </li>
                     <!-- BEGIN NOTIFICATION DROPDOWN -->
@@ -131,7 +131,7 @@
                         <ul class="dropdown-menu">
                            <!--  <li><a href=""><i class="icon-lock"></i> 修改密码</a></li> -->
                             <!-- <li><a onclick="exit()" id="exitLogin"><i class="icon-key"></i> 退出</a></li> -->
-                      		<li><button onclick="exit()" id="exitLogin"><i class="icon-key"></i> 退出</button></li>
+                      		<li><a th:href="@{exit}" >退出</a></li>
                             
                         </ul>
                     </li>
@@ -180,8 +180,8 @@
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
-						<li><a th:href="allCompanyCredit" target="ssb">所有公司信誉档案</a> <a
-							th:href="ownCompanyCredit" target="ssb">本公司信誉档案</a>
+						<li><a th:href="allCompanyCredit" target="ssb">所有公司信誉档案</a> 
+						<a id = "ownCompany" th:if="${identity} eq 'company'" th:href="ownCompanyCredit" target="ssb">本公司信誉档案</a>
 							</li>
 					</ul>
                 </li>
@@ -396,11 +396,16 @@
 			})*/
     } 
     jQuery(document).ready(function() {
+        // var identity = $.session("identity");
+        //var identity = $("identity").val();
+      /*   var identity =  String([[${identity}]])
+        if(identity !== 'company'){
+        	$("#ownCompany").hide();
+        } */
         App.init();
         UIModals.init();
         // var swiper = new Swiper('.swiper-container');
         $('.datainfo .span12,.loading').hide();
-        alert("sb");
     }); 
     </script>
     <!-- END JAVASCRIPTS -->

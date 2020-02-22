@@ -14,7 +14,7 @@ import com.job.feign.provider.service.IResumeService;
 /**
  * 
  * 简述部分: 简历
- * @author lijiawen
+ * @author WK
  * @version 2020年1月18日
  */
 @RestController()
@@ -50,7 +50,7 @@ public class ResumeController {
 			@RequestParam("rows") int pageSize, @RequestParam(value = "asin", required = false) String asin,
 			@RequestParam(value = "reviewerName", required = false) String reviewerName,
 			@RequestParam(value = "keyWord", required = false) String keyWord, @RequestParam("identity") String identity) {
-				return iResumeService.getAllRsume(pageNum, pageSize,identity);
+				return iResumeService.getAllRsume(pageNum, pageSize,identity,asin);
 		
 	}
 	

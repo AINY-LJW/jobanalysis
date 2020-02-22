@@ -8,7 +8,7 @@ import feign.hystrix.FallbackFactory;
  * 
  * 简述部分:简历微服务容错
  *
- * @author lijiawen
+ * @author WK
  * @version 2020年1月18日
  */
 public class ResumeFeignClientFallback {

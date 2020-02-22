@@ -18,7 +18,7 @@ import com.job.feign.consumer.feign.UserFeignClient;
  * 
  * 简述部分:公司信誉档案接口
  *
- * @author lijiawen
+ * @author WK
  * @version 2020年2月18日
  */
 @RestController

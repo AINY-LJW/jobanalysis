@@ -4,7 +4,7 @@ import java.util.Date;
 /**
  * 工作经历实体类
  * 简述部分:
- * @author lijiawen
+ * @author WK
  * @version 2020年1月18日
  */
 public class WorkExperienceVO {
