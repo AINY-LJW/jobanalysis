@@ -33,8 +33,23 @@ public class CompanyCreditArchivesController {
 	public EasyUIDataGridResult getResumeByKeywords(@RequestBody @RequestParam("page") int pageNum,
 			@RequestParam("rows") int pageSize, @RequestParam(value = "asin", required = false) String asin,
 			@RequestParam(value = "reviewerName", required = false) String reviewerName,
-			@RequestParam(value = "keyWord", required = false) String keyWord) {
-				return companyCreditArchivesService.getAllCompanyCreditCanSee(pageNum, pageSize,asin,reviewerName,keyWord);
+			@RequestParam(value = "keyWord", required = false) String keyWord,@RequestParam("uid") Integer uid) {
+				return companyCreditArchivesService.getAllCompanyCreditCanSee(pageNum, pageSize,asin,reviewerName,keyWord,uid);
+		
+	}
+	
+	/**
+	 * 获取猜你喜欢
+	 * TODO
+	 * @param 
+	 * @return EasyUIDataGridResult
+	 */
+	@PostMapping("/like")
+	public EasyUIDataGridResult getResumeLike(@RequestBody @RequestParam("page") int pageNum,
+			@RequestParam("rows") int pageSize, @RequestParam(value = "asin", required = false) String asin,
+			@RequestParam(value = "reviewerName", required = false) String reviewerName,
+			@RequestParam(value = "keyWord", required = false) String keyWord,@RequestParam("uid") Integer uid) {
+				return companyCreditArchivesService.getLikeCompanyCreditCanSee(pageNum, pageSize,asin,reviewerName,keyWord,uid);
 		
 	}
 	

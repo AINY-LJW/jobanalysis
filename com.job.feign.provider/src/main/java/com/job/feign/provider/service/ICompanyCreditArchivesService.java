@@ -4,12 +4,19 @@ import com.comment.util.EasyUIDataGridResult;
 
 public interface ICompanyCreditArchivesService {
 	/**
+	 * 猜你喜欢
+	 * TODO
+	 * @param 
+	 * @return R
+	 */
+	public EasyUIDataGridResult getLikeCompanyCreditCanSee(int pageNum, int pageSize,String legalperson,String industry,String companyName,Integer uid);
+	/**
 	 * 获取所有
 	 * TODO
 	 * @param 
 	 * @return R
 	 */
-	public EasyUIDataGridResult getAllCompanyCreditCanSee(int pageNum, int pageSize,String legalperson,String industry,String companyName);
+	public EasyUIDataGridResult getAllCompanyCreditCanSee(int pageNum, int pageSize,String legalperson,String industry,String companyName,Integer uid);
 	
 	/**
 	 * 本公司信誉档案

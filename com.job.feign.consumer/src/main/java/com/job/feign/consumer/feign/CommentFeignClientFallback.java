@@ -96,7 +96,7 @@ public class CommentFeignClientFallback implements FallbackFactory<UserFeignClie
 
 			@Override
 			public EasyUIDataGridResult getAllCompanyCredit(int pageNum, int pageSize, String asin, String reviewerName,
-					String keyWord) {
+					String keyWord,Integer uid) {
 				logger.error("获取所有信誉档案异常");
 				return null;
 			}
@@ -129,6 +129,13 @@ public class CommentFeignClientFallback implements FallbackFactory<UserFeignClie
 			@Override
 			public EasyUIDataGridResult getResumeByKeywords(int pageNum, int pageSize, String asin, String reviewerName,
 					String keyWord, String identity) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public EasyUIDataGridResult getResumeLike(int pageNum, int pageSize, String asin, String reviewerName,
+					String keyWord, Integer uid) {
 				// TODO Auto-generated method stub
 				return null;
 			}

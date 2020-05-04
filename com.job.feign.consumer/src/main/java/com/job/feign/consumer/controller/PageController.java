@@ -39,6 +39,17 @@ public class PageController {
 	public String showAllCompanyCreditPage(Model model) {
 		return "allCompanyCredit.html";
 	}
+	
+	/**
+	 * 猜你喜欢
+	 * TODO
+	 * @param 
+	 * @return String
+	 */
+	@RequestMapping(value = "allCompanyCreditLike", method = RequestMethod.GET)
+	public String allCompanyCreditLike(Model model) {
+		return "allCompanyCreditLike.html";
+	}
 	/**=======================================以下简历相关=================================*/
 	/**
 	 * 上传json数据保存简历页面

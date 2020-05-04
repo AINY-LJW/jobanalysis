@@ -47,7 +47,13 @@ public interface UserFeignClient {
 	public EasyUIDataGridResult getAllCompanyCredit(@RequestBody @RequestParam("page") int pageNum,
 			@RequestParam("rows") int pageSize, @RequestParam(value = "asin", required = false) String asin,
 			@RequestParam(value = "reviewerName", required = false) String reviewerName,
-			@RequestParam(value = "keyWord", required = false) String keyWord) ;
+			@RequestParam(value = "keyWord", required = false) String keyWord,@RequestParam("uid")Integer uid) ;
+	
+	@PostMapping("companyCredit/like")
+	public EasyUIDataGridResult getResumeLike(@RequestBody @RequestParam("page") int pageNum,
+			@RequestParam("rows") int pageSize, @RequestParam(value = "asin", required = false) String asin,
+			@RequestParam(value = "reviewerName", required = false) String reviewerName,
+			@RequestParam(value = "keyWord", required = false) String keyWord,@RequestParam("uid") Integer uid) ;
 	/**=====================================以下简历==========================================*/
 	
 	/**

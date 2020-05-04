@@ -3,6 +3,7 @@ package com.job.feign.provider.dao;
 import com.job.feign.provider.domain.CompanyCreditArchives;
 import com.job.feign.provider.domain.CompanyCreditArchivesExample;
 import com.job.feign.provider.domain.CompanyCreditArchivesVO;
+import com.job.feign.provider.sqlpro.SqlProvider;
 
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,9 @@ public interface CompanyCreditArchivesMapper {
     int insertSelective(CompanyCreditArchives record);
 
     List<CompanyCreditArchives> selectByExample(CompanyCreditArchivesExample example);
+    
+    @SelectProvider(type=SqlProvider.class,method="getAllLike")
+    List<CompanyCreditArchives> getAllLike( Map<String, List<String>> map);
 
     CompanyCreditArchives selectByPrimaryKey(Integer id);
 

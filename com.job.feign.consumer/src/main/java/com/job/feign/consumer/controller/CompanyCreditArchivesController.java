@@ -40,9 +40,36 @@ public class CompanyCreditArchivesController {
 			@RequestParam("rows") int pageSize, @RequestParam(value = "asin", required = false) String asin,
 			@RequestParam(value = "reviewerName", required = false) String reviewerName,
 			@RequestParam(value = "keyWord", required = false) String keyWord) {
-		return feignClient.getAllCompanyCredit(pageNum, pageSize, asin, reviewerName, keyWord);
+		User loginUser = (User) request.getSession().getAttribute("loginUser");
+		if(loginUser == null) {
+			throw new RuntimeException("登录过期，请重新登陆");
+		}
+		
+		// 身份		
+		String identity = (String) request.getSession().getAttribute("identity");
+		return feignClient.getAllCompanyCredit(pageNum, pageSize, asin, reviewerName, keyWord,!"company".equals(identity) ? loginUser.getId() : null);
 	}
 	
+	
+	/**
+	 * 获取猜你喜欢
+	 * TODO
+	 * @param 
+	 * @return EasyUIDataGridResult
+	 */
+	@PostMapping("/like")
+	public EasyUIDataGridResult getResumeLike(@RequestBody @RequestParam("page") int pageNum,
+			@RequestParam("rows") int pageSize, @RequestParam(value = "asin", required = false) String asin,
+			@RequestParam(value = "reviewerName", required = false) String reviewerName,
+			@RequestParam(value = "keyWord", required = false) String keyWord) {
+		User loginUser = (User) request.getSession().getAttribute("loginUser");
+		if(loginUser == null) {
+			throw new RuntimeException("登录过期，请重新登陆");
+		}
+		// 身份		
+		String identity = (String) request.getSession().getAttribute("identity");
+		return feignClient.getResumeLike(pageNum, pageSize, asin, reviewerName, keyWord, !"company".equals(identity) ? loginUser.getId() : null);
+	}
 	/**
 	 * 获取本公司
 	 * TODO
