@@ -169,7 +169,7 @@
                     </a>
                     <ul class="sub-menu">
 						<li><a th:href="@{allResume}" target="ssb">所有简历</a> <a
-							th:href="@{uploadResume}" target="ssb">上传简历</a>
+							th:if="${identity} ne 'company'" th:href="@{uploadResume}" target="ssb">上传简历</a>
 							</li>
 					</ul>
                 </li>
@@ -180,10 +180,10 @@
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
-						<li><a th:href="allCompanyCredit" target="ssb">所有公司信誉档案</a> 
+						<li><a th:if="${identity} ne 'company'" th:href="allCompanyCredit" target="ssb">所有公司信誉档案</a> 
 						<a id = "ownCompany" th:if="${identity} eq 'company'" th:href="ownCompanyCredit" target="ssb">本公司信誉档案</a>
 							</li>
-						<li><a th:href="allCompanyCreditLike" target="ssb">所有公司信誉档案</a> 
+						<li><a th:if="${identity} ne 'company'" th:href="allCompanyCreditLike" target="ssb">猜你喜欢</a> 
 					</ul>
                 </li>
                 <li>

@@ -181,7 +181,7 @@ xmlns:th="http://www.thymeleaf.org">
 			<div style="text-align: center; padding: 5px" id = "change">
 				<!-- 修改状态 -->
 				
- 				<button id="btnchange" onclick="changeState()">更改状态</button>
+ 				<button th:if="${identity} ne 'company'" id="btnchange" onclick="changeState()">更改状态</button>
 			</div>
 		</div>
 		<!-- 添加操作 end-->
