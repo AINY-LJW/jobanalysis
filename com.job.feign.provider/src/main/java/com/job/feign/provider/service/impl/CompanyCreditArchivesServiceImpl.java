@@ -89,12 +89,21 @@ public class CompanyCreditArchivesServiceImpl implements ICompanyCreditArchivesS
 		List<String> list = new ArrayList<String>();
 		list.addAll((List<String>)json.get("seachkeys"));
 		if(!StringUtils.isEmpty(legalperson)) {
+			if (list.size() >5) {
+				list.remove(0);
+			}
 			list.add(legalperson);
 		}
 		if(!StringUtils.isEmpty(industry)) {
+			if (list.size() >5) {
+				list.remove(0);
+			}
 			list.add(industry);
 		}
 		if(!StringUtils.isEmpty(companyName)) {
+			if (list.size() >5) {
+				list.remove(0);
+			}
 			list.add(companyName);
 		}
 		// 没搜索
